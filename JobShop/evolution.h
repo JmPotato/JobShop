@@ -5,4 +5,10 @@
 #ifndef JOBSHOP_EVOLUTION_H
 #define JOBSHOP_EVOLUTION_H
 
+int * creatGene(MACHINE * machines);
+int * chooseGene();
+int * mutateGene();
+int * reproductGene();
+
+
 #endif //JOBSHOP_EVOLUTION_H

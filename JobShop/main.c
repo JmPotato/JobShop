@@ -13,8 +13,10 @@ int main() {
     }
 
     int * scale = readIuputHeader(input_txt);
-    ITEM * items = initializeIiems(input_txt, *scale);
-    MACHINE * machines = initializeMachines(input_txt, *(scale + 1));
+    int m = *scale, n = *(scale + 1);
+    ITEM * items = initializeIiems(input_txt, n);
+
+    MACHINE * machines = initializeMachines(m, n, items);
 
     return 0;
 }
