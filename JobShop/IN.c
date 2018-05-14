@@ -49,13 +49,14 @@ ITEM * initializeIiems(FILE * input_txt, int n) {
     }
 
     int line = 0, comma = 0;
-    ITEM items[n];
+    ITEM * items = (ITEM *) malloc(n * sizeof(ITEM));
     for (int i = 0;i < count;i++) {
         if (content[i] != 10) {
             if (content[i] == 44)
                 comma++;
         } else {
             items[line].id = line + 1;
+            items[line].machine_number = comma;
             items[line].schedule = (int **) malloc(comma * sizeof(int *));
             for (int j = 0;j < comma;j++)
                 items[line].schedule[j] = (int *) malloc(2 * sizeof(int));
@@ -87,8 +88,30 @@ ITEM * initializeIiems(FILE * input_txt, int n) {
     return items;
 }
 
-MACHINE * initializeMachines(FILE * input_txt, int m) {
-    MACHINE machines[m];
+MACHINE * initializeMachines(int m, int n, ITEM * items) {
+    int length = 0;
+    MACHINE * machines = (MACHINE *) malloc(m * sizeof(MACHINE));
+
+    for (int i = 0;i < m;i++) {
+        machines[i].id = i + 1;
+        for (int x = 0;x < n;x++) {
+            for (int y = 0;y < items[x].machine_number;y++) {
+                if (items[x].schedule[y][1] == machines[i].id)
+                    length++;
+            }
+        }
+        machines[i].item_list = (int *) malloc(length * sizeof(int));
+
+        int index = 0;
+        for (int x = 0;x < n;x++) {
+            for (int y = 0;y < items[x].machine_number;y++) {
+                if (items[x].schedule[y][1] == machines[i].id) {
+                    *(machines[i].item_list + index) = items[x].id;
+                    index++;
+                }
+            }
+        }
+    }
 
     return machines;
 }
