@@ -6,7 +6,7 @@
 #define JOBSHOP_UTILS_H
 
 int randomInterger(int a, int b);
-MACHINE * decodeGene(int * gene, int gene_length, ITEM * items, int n, MACHINE * machines, int m);
-unsigned int getExeTime(ITEM * items, int n, MACHINE * machines, int m);
+void decodeGene(int * gene, int gene_length, ITEM * items, int n, MACHINE * machines, int m);
+unsigned int getExeTime(int * gene, int gene_length, ITEM * items, int n, int m);
 
 #endif //JOBSHOP_UTILS_H

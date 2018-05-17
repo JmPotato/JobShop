@@ -18,16 +18,19 @@ int main() {
     }
 
     int * scale = readIuputHeader(input_txt);
-    int m = *scale, n = *(scale + 1);
+    int n = *scale, m = *(scale + 1);
     ITEM * items = initializeIiems(input_txt, n);
-
     MACHINE * machines = initializeMachines(m, n, items);
 
-    int ** population = creatPopulation(items, n);
+    int gene_length = 0;
+    for (int i = 0;i < n;i++)
+        gene_length += items[i].machine_number;
 
-    for(int i = 0;i < n;i++)
+    int ** population = creatPopulation(items, n, gene_length);
+
+    for (int i = 0; i < 7; ++i) {
         printf("%d ", population[0][i]);
-
+    }
 
     return 0;
 }

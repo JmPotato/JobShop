@@ -29,7 +29,9 @@ int * readIuputHeader(FILE * input_txt) {
         machine_m += (content[i+j+1] - 48) * (pow(10, count-i-2));
     }
 
-    int scale[2] = {item_n, machine_m};
+    int * scale = (int *) malloc(2 * sizeof(int));
+    scale[0] = item_n;
+    scale[1] = machine_m;
 
     return scale;
 }
