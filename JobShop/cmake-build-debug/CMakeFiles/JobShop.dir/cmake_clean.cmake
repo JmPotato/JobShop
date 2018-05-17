@@ -1,5 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/JobShop.dir/main.c.o"
+  "CMakeFiles/JobShop.dir/IN.c.o"
+  "CMakeFiles/JobShop.dir/evolution.c.o"
+  "CMakeFiles/JobShop.dir/utils.c.o"
   "JobShop.pdb"
   "JobShop"
 )

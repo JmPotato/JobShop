@@ -78,16 +78,25 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/jmpotato/Code/C/BUPT_C/Design/JobShop/IN.c">
+			<Option target="JobShop"/>
+		</Unit>
 		<Unit filename="/Users/jmpotato/Code/C/BUPT_C/Design/JobShop/IN.h">
 			<Option target="JobShop"/>
 		</Unit>
 		<Unit filename="/Users/jmpotato/Code/C/BUPT_C/Design/JobShop/OUT.h">
 			<Option target="JobShop"/>
 		</Unit>
+		<Unit filename="/Users/jmpotato/Code/C/BUPT_C/Design/JobShop/evolution.c">
+			<Option target="JobShop"/>
+		</Unit>
 		<Unit filename="/Users/jmpotato/Code/C/BUPT_C/Design/JobShop/evolution.h">
 			<Option target="JobShop"/>
 		</Unit>
 		<Unit filename="/Users/jmpotato/Code/C/BUPT_C/Design/JobShop/main.c">
+			<Option target="JobShop"/>
+		</Unit>
+		<Unit filename="/Users/jmpotato/Code/C/BUPT_C/Design/JobShop/utils.c">
 			<Option target="JobShop"/>
 		</Unit>
 		<Unit filename="/Users/jmpotato/Code/C/BUPT_C/Design/JobShop/utils.h">

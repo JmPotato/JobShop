@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /Users/jmpotato/Code/C/BUPT_C/Design/JobShop/cmake-build-debu
 CMakeFiles/JobShop.dir/all:
 	$(MAKE) -f CMakeFiles/JobShop.dir/build.make CMakeFiles/JobShop.dir/depend
 	$(MAKE) -f CMakeFiles/JobShop.dir/build.make CMakeFiles/JobShop.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/jmpotato/Code/C/BUPT_C/Design/JobShop/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target JobShop"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/jmpotato/Code/C/BUPT_C/Design/JobShop/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5 "Built target JobShop"
 .PHONY : CMakeFiles/JobShop.dir/all
 
 # Include target in all.
@@ -76,7 +76,7 @@ all: CMakeFiles/JobShop.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/JobShop.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jmpotato/Code/C/BUPT_C/Design/JobShop/cmake-build-debug/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jmpotato/Code/C/BUPT_C/Design/JobShop/cmake-build-debug/CMakeFiles 5
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/JobShop.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/jmpotato/Code/C/BUPT_C/Design/JobShop/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/JobShop.dir/rule
