@@ -16,7 +16,6 @@ typedef struct item {
 typedef struct machine {
     int id;
     int * item_list;
-    int * gene;
 } MACHINE;
 
 int * readIuputHeader(FILE * input_txt);    //Read the first line of input.txt to get the numbers of items and machines

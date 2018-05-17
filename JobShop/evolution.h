@@ -5,7 +5,9 @@
 #ifndef JOBSHOP_EVOLUTION_H
 #define JOBSHOP_EVOLUTION_H
 
-int * creatGene(MACHINE * machines);
+int getGeneLength(ITEM * items, int n);
+int * creatGene(ITEM * items, int n);
+int ** creatPopulation(ITEM * items, int n);
 int * chooseGene();
 int * mutateGene();
 int * reproductGene();

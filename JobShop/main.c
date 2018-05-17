@@ -1,10 +1,15 @@
+#include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "IN.h"
+#include "utils.h"
+#include "evolution.h"
 
 int main() {
+    srand(clock());
+
     FILE * input_txt;
 
     if ((input_txt = fopen("input.txt", "r")) == NULL) {
@@ -17,6 +22,12 @@ int main() {
     ITEM * items = initializeIiems(input_txt, n);
 
     MACHINE * machines = initializeMachines(m, n, items);
+
+    int ** population = creatPopulation(items, n);
+
+    for(int i = 0;i < n;i++)
+        printf("%d ", population[0][i]);
+
 
     return 0;
 }
