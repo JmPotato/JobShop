@@ -32,11 +32,11 @@ void decodeGene(int * gene, int gene_length, ITEM * items, int n, MACHINE * mach
 
 unsigned int getExeTime(int * gene, int gene_length, ITEM * items, int n, int m) {
     unsigned int * counter = (unsigned int *) malloc(n * sizeof(unsigned int));
-    memset(counter, 0, n);
+    memset(counter, 0, n * sizeof(unsigned int));
     unsigned int * machine_end_time = (unsigned int *) malloc(m * sizeof(unsigned int));
-    memset(machine_end_time, 0, m);
+    memset(machine_end_time, 0, m * sizeof(unsigned int));
     unsigned int * job_end_time = (unsigned int *) malloc(n * sizeof(unsigned int));
-    memset(job_end_time, 0, n);
+    memset(job_end_time, 0, n * sizeof(unsigned int));
     unsigned int start_time = 0;
     unsigned int end_time = 0;
     unsigned int sum_time = 0;

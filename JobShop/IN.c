@@ -26,7 +26,10 @@ int * readIuputHeader(FILE * input_txt) {
     }
     for (int j = 0;j < i;j++) {
         item_n += (content[j] - 48) * (pow(10, i-j-1));
-        machine_m += (content[i+j+1] - 48) * (pow(10, count-i-2));
+        if ((count-i-1) != 1)
+            machine_m += (content[i+j+1] - 48) * (pow(10, count-i-2));
+        else
+            machine_m = content[i+1] - 48;
     }
 
     int * scale = (int *) malloc(2 * sizeof(int));
@@ -71,12 +74,12 @@ ITEM * initializeIiems(FILE * input_txt, int n) {
     line = 0;
     for (int i = 0;i < count;i++) {
         if (content[i] == 44) {
-            if (content[i-2] == 40) {
-                *(*(items[line].schedule + number) + 0) = content[i-1] - 48;
+            if (content[i+2] == 41) {
+                *(*(items[line].schedule + number) + 0) = content[i+1] - 48;
             } else {
-                *(*(items[line].schedule + number) + 0) = content[i-1] - 48 + (content[i-2] - 48) * 10;
+                *(*(items[line].schedule + number) + 0) = content[i+2] - 48 + (content[i+1] - 48) * 10;
             }
-            *(*(items[line].schedule + number) + 1) = content[i+1] - 48;
+            *(*(items[line].schedule + number) + 1) = content[i-1] - 48 + 1;
             number++;
         }
         if (content[i] == 10) {
