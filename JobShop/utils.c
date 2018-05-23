@@ -44,6 +44,8 @@ unsigned int getExeTime(int * gene, int gene_length, ITEM * items, int n, int m)
     unsigned int operation = 0;
     unsigned int machine = 0;
 
+    int a = items[1].schedule[0][1];
+
     for (int i = 0;i < gene_length;i++) {
         item = gene[i]-1;
         counter[item]++;

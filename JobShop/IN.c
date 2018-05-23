@@ -10,9 +10,12 @@
 int * readIuputHeader(FILE * input_txt) {
     rewind(input_txt);
     int ch, count = 0;
+    ch = getc(input_txt);
 
-    while ((ch = getc(input_txt)) != 10)
+    while (ch != 10 && ch != 13) {
         count++;
+        ch = getc(input_txt);
+    }
 
     int * content = (int *) malloc(count * sizeof(int));
     rewind(input_txt);
