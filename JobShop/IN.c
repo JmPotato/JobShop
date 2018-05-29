@@ -56,37 +56,49 @@ ITEM * initializeIiems(FILE * input_txt, int n) {
         content[i] = ch;
     }
 
-    int line = 0, comma = 0;
+    int line = 0, space = 0, fliter = 1;
     ITEM * items = (ITEM *) malloc(n * sizeof(ITEM));
     for (int i = 0;i < count;i++) {
-        if (content[i] != 10) {
-            if (content[i] == 44)
-                comma++;
+        if (content[i] != 10 && i != count-1) {
+            if (content[i] == 32 && fliter) {
+                space++;
+                fliter = 0;
+            } else if (content[i] == 32 && !fliter)
+                fliter = 1;
         } else {
             items[line].id = line + 1;
-            items[line].machine_number = comma;
-            items[line].schedule = (int **) malloc(comma * sizeof(int *));
-            for (int j = 0;j < comma;j++)
+            items[line].machine_number = space;
+            items[line].schedule = (int **) malloc(space * sizeof(int *));
+            for (int j = 0;j < space;j++)
                 items[line].schedule[j] = (int *) malloc(2 * sizeof(int));
             line++;
-            comma = 0;
+            space = 0;
+            fliter = 1;
         }
     }
 
     int number = 0;
-    line = 0;
+    line = 0, space = 0;
     for (int i = 0;i < count;i++) {
-        if (content[i] == 44) {
-            if (content[i+2] == 41) {
+        if (content[i] == 32 && fliter) {
+            space++;
+            fliter = 0;
+            if (content[i+2] == 32 || content[i+2] == 10 || content[i+2] == 13 || i+1 == count - 1) {
                 *(*(items[line].schedule + number) + 0) = content[i+1] - 48;
-            } else {
+            } else if (content[i+3] == 32 || content[i+3] == 10 || content[i+3] == 13 || i+2 == count - 1) {
                 *(*(items[line].schedule + number) + 0) = content[i+2] - 48 + (content[i+1] - 48) * 10;
             }
-            *(*(items[line].schedule + number) + 1) = content[i-1] - 48 + 1;
+            if (i == 1 || content[i-2] == 10 || content[i-2] == 32) {
+                *(*(items[line].schedule + number) + 1) = content[i-1] - 48 + 1;
+            } else if (content[i-3] == 10 || content[i-3] == 32) {
+                *(*(items[line].schedule + number) + 1) = content[i-1] - 48 + (content[i-2] - 48) * 10 + 1;
+            }
             number++;
-        }
+        } else if ((content[i] == 32 && !fliter) || content[i] == 10)
+            fliter = 1;
         if (content[i] == 10) {
             line++;
+            space = 0;
             number = 0;
         }
     }
@@ -108,15 +120,11 @@ MACHINE * initializeMachines(int m, int n, ITEM * items) {
                     length++;
             }
         }
-        machines[i].item_list = (int *) malloc(length * sizeof(int));
 
-        int index = 0;
         for (int x = 0;x < n;x++) {
             for (int y = 0;y < items[x].machine_number;y++) {
-                if (items[x].schedule[y][1] == machines[i].id) {
-                    *(machines[i].item_list + index) = items[x].id;
-                    index++;
-                }
+                if (items[x].schedule[y][1] == machines[i].id)
+                    machines[i].item_number++;
             }
         }
     }
