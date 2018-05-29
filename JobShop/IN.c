@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*读取工程的规模：工件数和机器数*/
 int * readIuputHeader(FILE * input_txt) {
     rewind(input_txt);
     int ch, count = 0;
@@ -42,6 +43,7 @@ int * readIuputHeader(FILE * input_txt) {
     return scale;
 }
 
+/*初始化工件结构体的数据结构*/
 ITEM * initializeIiems(FILE * input_txt, int n) {
     int ch, count = 0;
     long current_pos = ftell(input_txt);
@@ -108,6 +110,7 @@ ITEM * initializeIiems(FILE * input_txt, int n) {
     return items;
 }
 
+/*初始化机器结构体的数据结构*/
 MACHINE * initializeMachines(int m, int n, ITEM * items) {
     int length = 0;
     MACHINE * machines = (MACHINE *) malloc(m * sizeof(MACHINE));

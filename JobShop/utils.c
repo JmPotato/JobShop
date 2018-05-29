@@ -8,11 +8,13 @@
 #include <stdlib.h>
 #include <memory.h>
 
+/*生成指定范围的随机整数*/
 int randomInterger(int a, int b) {
     int interger = (rand() % (b-a+1)) + a;
     return interger;
 }
 
+/*计算某条基因所对应工序的最短完成时间*/
 unsigned int getExeTime(int * gene, int gene_length, ITEM * items, int n, int m) {
     unsigned int * counter = (unsigned int *) malloc(n * sizeof(unsigned int));
     memset(counter, 0, n * sizeof(unsigned int));
@@ -36,7 +38,8 @@ unsigned int getExeTime(int * gene, int gene_length, ITEM * items, int n, int m)
         end_time = start_time + items[item].schedule[operation][0];
         machine_end_time[machine] = end_time;
         job_end_time[item] = end_time;
-        sum_time = sum_time > end_time ? sum_time : end_time;
+        if (sum_time < end_time)
+            sum_time = end_time;
     }
 
     free(counter);
@@ -46,6 +49,7 @@ unsigned int getExeTime(int * gene, int gene_length, ITEM * items, int n, int m)
     return sum_time;
 }
 
+/*解码基因，并输出*/
 void decodeGene(int * gene, int gene_length, ITEM * items, int n, MACHINE * machines, int m) {
     for (int i = 0;i < m;i++) {
         machines[i].item_list = (int **) malloc(n * sizeof(int *));
@@ -77,7 +81,9 @@ void decodeGene(int * gene, int gene_length, ITEM * items, int n, MACHINE * mach
         end_time = start_time + items[item].schedule[operation][0];
         machine_end_time[machine] = end_time;
         job_end_time[item] = end_time;
-        sum_time = sum_time > end_time ? sum_time : end_time;
+        if (sum_time < end_time)
+            sum_time = end_time;
+
         int index = 0;
         while (machines[machine].item_list[index][3]  != 0)
             index++;

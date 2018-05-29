@@ -10,7 +10,7 @@
 #include <math.h>
 #include <string.h>
 
-
+/*生成种群并初始化*/
 int ** creatPopulation(ITEM * items, int n, int gene_length, int MaxPopulation) {
     int ** population = (int **) malloc(MaxPopulation * sizeof(int *));
     for (int x = 0;x < MaxPopulation;x++) {
@@ -23,6 +23,7 @@ int ** creatPopulation(ITEM * items, int n, int gene_length, int MaxPopulation) 
             }
         }
 
+        /*对基因进行随机打乱*/
         for (int j = 0;j < gene_length;j++) {
             int index = randomInterger(0, gene_length-1);
             if (index != j) {
@@ -36,6 +37,7 @@ int ** creatPopulation(ITEM * items, int n, int gene_length, int MaxPopulation) 
     return population;
 }
 
+/*轮盘赌选择子代的算法*/
 int ** rouletteGene(int ** population, int gene_length, ITEM * items, int n, int m, int MaxPopulation){
 	double * probability = (double *) malloc((MaxPopulation + 1) * sizeof(double));
     //[MaxPopulation+1] = { 0 };
@@ -44,7 +46,7 @@ int ** rouletteGene(int ** population, int gene_length, ITEM * items, int n, int
     double sumFitness = 0.0;
 	int ** selectedGenes = (int **)malloc(2 * sizeof(int *));
 	for (int j = 1; j <= MaxPopulation; j++) {
-		probability[j] = exp((double)1 / getExeTime(population[j-1], gene_length, items, n, m));
+		probability[j] = exp((double)1 / getExeTime(population[j-1], gene_length, items, n, m)); //使用 e 指数作为适应值函数
 		sumFitness += probability[j];
 	}
 	for (int j = 0; j <= MaxPopulation; j++) {
@@ -68,6 +70,7 @@ int ** rouletteGene(int ** population, int gene_length, ITEM * items, int n, int
 	return selectedGenes;
 }
 
+/*OX 顺序交叉算法，生成子代基因*/
 int * crossoverGene(int ** selectedGenes, int gene_length) {
 	int left = 0, right = 0;
 	int judge = 1;
@@ -128,6 +131,7 @@ int * crossoverGene(int ** selectedGenes, int gene_length) {
 	return childGene;
 }
 
+/*基因突变*/
 int * mutateGene(int * childGene, int gene_length) {
     int index_1 = randomInterger(0, gene_length-1);
     int index_2 = randomInterger(0, gene_length-1);
