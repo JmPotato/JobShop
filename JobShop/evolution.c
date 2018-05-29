@@ -91,7 +91,7 @@ int * crossoverGene(int ** selectedGenes, int gene_length) {
 	while (judge) {
 		left = randomInterger(0, gene_length - 1);
 		right = randomInterger(0, gene_length - 1);
-		if ((left != right) && (left != 0 && right != 6)) {
+		if ((left != right) && (left != 0 && right != gene_length-1)) {
 			judge = 0;
 		}
 	}
