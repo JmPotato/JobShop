@@ -10,7 +10,7 @@
 #include "evolution.h"
 
 //#define MaxThread 1 //多线程最大线程数
-#define Iteration 50000 //进化的迭代次数
+#define Iteration 5000 //进化的迭代次数
 #define MaxPopulation 100 //最大种群个体数
 
 /*多线程函数传参用结构体
